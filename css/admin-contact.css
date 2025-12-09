@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #3b1f2b; 
+    color: #fff;
+    flex-shrink: 0;
+}
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    background-color: #2a0f1a; 
+}
+.sidebar nav ul {
+    list-style: none;
+}
+.sidebar nav ul li {
+    margin: 15px 0;
+}
+.sidebar nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+.sidebar nav ul li a.active,
+.sidebar nav ul li a:hover {
+    background-color: #e91e63; 
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fdeff2; 
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+header .user-info {
+    display: flex;
+    align-items: center;
+}
+header #adminName {
+    margin-right: 15px;
+    font-weight: 600;
+    color: #d81b60; 
+}
+header #logoutBtn {
+    padding: 6px 12px;
+    background-color: #c2185b; 
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+header #logoutBtn:hover {
+    background-color: #ad1457; 
+}
+
+/* Contacts table */
+.contacts-section h2 {
+    margin-bottom: 15px;
+    color: #880e4f; 
+}
+.search-input {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #e91e63;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff0f5; 
+}
+th, td {
+    padding: 10px 12px;
+    border: 1px solid #f8bbd0; 
+    text-align: left;
+}
+th {
+    background-color: #e91e63; 
+    color: #fff;
+}
+tr:nth-child(even) {
+    background-color: #fdeff2; 
+}
+
+/* Buttons */
+button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+button.editBtn { background-color: #ec407a; color: #fff; }
+button.deleteBtn { background-color: #d81b60; color: #fff; }
+button.editBtn:hover { background-color: #d81b60; }
+button.deleteBtn:hover { background-color: #ad1457; }

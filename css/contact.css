@@ -1,0 +1,134 @@
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* image & form same height */
+    gap: 40px;
+    width: 90%;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+/* Contact Image */
+.contact-image img {
+    width: 100%;
+    max-width: 360px; /* match form width */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    object-fit: cover;
+}
+
+/* Contact Form */
+.contact-form {
+    flex: 1;
+    max-width: 360px;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* spread inputs to fill form height */
+}
+
+/* Form Header */
+.contact-form h2 {
+    margin-bottom: 10px;
+    font-size: 26px;
+}
+
+.subtitle {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Form Labels and Inputs */
+.contact-form label {
+    font-size: 14px;
+    margin-top: 12px;
+    display: block;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    flex-grow: 1; /* allows input/textarea to expand */
+}
+
+/* Textarea */
+.contact-form textarea {
+    resize: none;
+}
+
+/* Button */
+.send-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    background: #e67e6b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.send-btn:hover {
+    background: #d46855;
+}
+
+/* Contact Info */
+.contact-info {
+    width: 250px;
+}
+
+.contact-info h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.social-icons i {
+    font-size: 22px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.form-msg {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-image img,
+    .contact-form {
+        max-width: 100%;
+    }
+}
+.contact-section {
+    padding: 90px 20px 120px 20px; /* adds bottom padding */
+}
+
+
+
+#footer {
+    margin-top: auto;
+}

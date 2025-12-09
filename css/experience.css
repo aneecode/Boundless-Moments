@@ -1,0 +1,186 @@
+/* Global */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+  background: #f3f0ff;
+      color: #333;
+}
+
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+/* EXPERIENCE SECTION */
+.experience-section {
+    padding: 60px 20px;
+}
+
+.experience-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.experience-card {
+    width: 420px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.6s ease;
+}
+
+.experience-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.experience-card h3 {
+    background: linear-gradient(to right, #6A5ACD, #9A74F8);
+    background-clip: text;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+}
+.card-title {
+    font-size: 20px;
+    background: linear-gradient(to right, #6a5acd, #9b6bf0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+}
+
+
+.exp-item, .award-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.icon {
+    font-size: 28px;
+}
+
+/* KEY SKILLS */
+.skills-section {
+    padding: 60px 20px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+    width: 90%;
+    margin: auto;
+}
+
+.skill-box {
+    background: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    font-size: 16px;
+}
+
+/* JOURNEY */
+.journey-section {
+    padding: 60px 20px;
+}
+
+.journey-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 90%;
+    margin: auto;
+}
+
+.journey-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.year {
+    background: #9A74F8;
+    color: #fff;
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 25px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+/* TESTIMONIALS */
+.testimonial-section {
+    padding: 60px 20px;
+}
+
+.testimonial-card {
+    width: 75%;
+    background: #fff;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 25px
+     rgba(0,0,0,0.1);
+}
+
+.quote {
+    font-size: 18px;
+    font-style: italic;
+}
+.client {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.client-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.contact-cta {
+    padding: 70px 20px;
+    background: #fff;
+    text-align: center;
+    border-radius: 18px;
+    margin: 40px auto;
+    width: 85%;
+    box-shadow: 0 5px 25px 
+    rgba(0,0,0,0.1);
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 12px 35px;
+    background: #9A74F8;
+    color: #fff;
+    border-radius: 30px;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 18px;
+}

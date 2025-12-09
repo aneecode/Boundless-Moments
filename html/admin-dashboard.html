@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard – Boundless</title>
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+   <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="admin-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="admin-contact.html"><i class="fas fa-envelope"></i> Contact Form Submission</a></li>
+                    <li><a href="admin-portfolio.html"><i class="fas fa-image"></i> Portfolio Entries</a></li>
+    
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header>
+                <div class="user-info">
+                    <span id="adminName">Welcome, Admin</span>
+                    <button id="logoutBtn">Log Out</button>
+                </div>
+            </header>
+
+            <!-- Welcome Panel -->
+            <section class="welcome-panel">
+                <h2>Welcome back, Admin!</h2>
+                <p>Here's an overview of your portfolio and messages today.</p>
+            </section>
+
+            <!-- Dashboard Cards -->
+            <section class="dashboard-cards">
+                <div class="card" id="contactCard">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Contact Messages</h3>
+                    <p id="contactCount">0</p>
+                    <span>Last 24 hours</span>
+                </div>
+                <div class="card" id="portfolioCard">
+                    <i class="fas fa-image"></i>
+                    <h3>Portfolio Items</h3>
+                    <p id="portfolioCount">0</p>
+                    <span>Total Uploaded</span>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="recent-activity">
+                <h3>Recent Contact Messages</h3>
+                <div class="activity-list" id="activityList">
+                    <p>No new messages</p>
+                </div>
+            </section>
+
+           
+        </main>
+    </div>
+
+   <script src="../js/admin-contact.js"></script>
+    <script src="../js/admin-portfolio.js"></script>
+ <script>
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('adminEmail');
+      window.location.href = '/html/admin-login.html'; 
+    });
+  </script>
+</body>
+</html>

@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
       localStorage.removeItem('adminEmail');
-      window.location.href = '/admin-login.html';
+      window.location.href = 'admin-login.html';
     });
   }
 

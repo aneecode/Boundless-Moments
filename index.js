@@ -1,3 +1,4 @@
+// index.js
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -10,12 +11,6 @@ const port = 3000;
 // ------------------- MIDDLEWARE -------------------
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
-
-// Serve static files
-app.use(express.static(path.join(__dirname, 'html')));
-app.use('/css', express.static(path.join(__dirname, 'css')));
-app.use('/js', express.static(path.join(__dirname, 'js')));
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // ------------------- DATABASE -------------------
 const pool = new Pool({
@@ -32,6 +27,47 @@ pool.connect()
     client.release();
   })
   .catch(err => console.error('PostgreSQL Connection Error:', err));
+
+// ------------------- STATIC FILES -------------------
+// Serve everything from project root
+app.use(express.static(__dirname));
+
+// ------------------- TEST ROUTE -------------------
+app.get('/test', (req, res) => {
+  res.json({ success: true, message: 'Server works!' });
+});
+
+// ------------------- ADMIN LOGIN -------------------
+app.post('/admin/login', async (req, res) => {
+  const { username, email, password } = req.body;
+
+  console.log('Login attempt received:');
+  console.log('Username:', username);
+  console.log('Email:', email);
+  console.log('Password:', password); // Debug only, remove in production!
+
+  if (!username || !email || !password) {
+    return res.status(400).json({ success: false, message: 'All fields are required' });
+  }
+
+  try {
+    const result = await pool.query(
+      `SELECT * FROM admin_user WHERE username = $1 AND email ILIKE $2 AND password = $3`,
+      [username.trim(), email.trim(), password]
+    );
+
+    console.log('Query result rows:', result.rows);
+
+    if (result.rows.length > 0) {
+      res.json({ success: true, message: 'Login successful' });
+    } else {
+      res.json({ success: false, message: 'Invalid username, email, or password' });
+    }
+  } catch (err) {
+    console.error('Database error:', err);
+    res.status(500).json({ success: false, message: 'Server error. Please try again later.' });
+  }
+});
 
 // ------------------- CONTACT ROUTES -------------------
 app.post('/api/contact', (req, res) => {
@@ -50,27 +86,6 @@ app.post('/api/contact', (req, res) => {
   );
 });
 
-// ------------------- ADMIN LOGIN -------------------
-app.post('/admin/login', async (req, res) => {
-  const { username, email, password } = req.body;
-
-  try {
-    const result = await pool.query(
-      `SELECT * FROM admin_user WHERE username = $1 AND email ILIKE $2 AND password = $3`,
-      [username.trim(), email.trim(), password]
-    );
-
-    if (result.rows.length > 0) {
-      res.json({ success: true, message: 'Login successful' });
-    } else {
-      res.json({ success: false, message: 'Invalid username, email, or password' });
-    }
-  } catch (err) {
-    console.error('Database error:', err);
-    res.json({ success: false, message: 'Server error. Please try again later.' });
-  }
-});
-
 // ------------------- ADMIN INQUIRIES -------------------
 app.get('/admin/inquiries', (req, res) => {
   pool.query(
@@ -86,8 +101,7 @@ app.get('/admin/inquiries', (req, res) => {
 });
 
 // ------------------- PORTFOLIO ROUTES -------------------
-
-// Admin portfolio route
+// Admin portfolio
 app.get('/admin/portfolio', (req, res) => {
   pool.query('SELECT id, title, description, image FROM portfolio ORDER BY id DESC', (err, result) => {
     if (err) {
@@ -98,7 +112,7 @@ app.get('/admin/portfolio', (req, res) => {
   });
 });
 
-// Public portfolio route
+// Public portfolio
 app.get('/portfolio', (req, res) => {
   pool.query('SELECT id, title, description, image FROM portfolio ORDER BY id DESC', (err, result) => {
     if (err) {
@@ -109,7 +123,6 @@ app.get('/portfolio', (req, res) => {
   });
 });
 
-
 // Add portfolio item
 app.post('/api/portfolio', (req, res) => {
   const { title, description, image_base64 } = req.body;
@@ -118,16 +131,14 @@ app.post('/api/portfolio', (req, res) => {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  // Validate base64 image format
   const matches = image_base64.match(/^data:(image\/.+);base64,(.+)$/);
   if (!matches || matches.length !== 3) {
     return res.status(400).json({ error: 'Invalid image format' });
   }
 
-  const ext = matches[1].split('/')[1]; // jpg, png, etc.
+  const ext = matches[1].split('/')[1];
   const base64Data = matches[2];
 
-  // Ensure images folder exists
   const imagesDir = path.join(__dirname, 'images');
   if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir);
 
@@ -155,7 +166,7 @@ app.post('/api/portfolio', (req, res) => {
   });
 });
 
-// Delete portfolio item by ID
+// Delete portfolio item
 app.delete('/api/portfolio/:id', (req, res) => {
   const id = req.params.id;
 
@@ -175,7 +186,8 @@ app.delete('/api/portfolio/:id', (req, res) => {
     });
   });
 });
-// Route to serve index.html
+
+// Serve index.html by default
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const adminEmail = localStorage.getItem('adminEmail');
   if (!adminEmail) {
-    window.location.href = '/html/admin-login.html';
+    window.location.href = '/admin-login.html';
     return;
   } else {
     adminNameSpan.textContent = `Welcome, ${adminEmail}`;
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('adminEmail');
-    window.location.href = '/html/admin-login.html';
+    window.location.href = '/admin-login.html';
   });
 
   // Fetch inquiries

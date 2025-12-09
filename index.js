@@ -175,6 +175,10 @@ app.delete('/api/portfolio/:id', (req, res) => {
     });
   });
 });
+// Route to serve index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // ------------------- START SERVER -------------------
 app.listen(port, () => {
